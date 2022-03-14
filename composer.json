@@ -1,5 +1,5 @@
 {
-    "name": "lagoon-examples/drupal9-base",
+    "name": "lagoon-examples/drupal9-varnish",
     "description": "Project template for Drupal 9 projects with MariaDB, hosted on Lagoon",
     "type": "project",
     "license": "GPL-2.0-or-later",
@@ -23,6 +23,9 @@
         "drupal/core-project-message": "9.3.7",
         "drupal/core-recommended": "9.3.7",
         "drupal/lagoon_logs": "2.0.1",
+        "drupal/lagoon_varnish": "^1.1",
+        "drupal/purge": "3.2.0",
+        "drupal/varnish_purge": "2.1.0",
         "drush/drush": "11.0.7",
         "zaporylie/composer-drupal-optimizations": "1.2.0"
     },

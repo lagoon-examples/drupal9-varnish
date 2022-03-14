@@ -1,5 +1,5 @@
-Docker Compose Drupal 9 base - php8, nginx, mariadb
-===================================================
+Docker Compose Drupal 9 varnish - php8, nginx, mariadb, varnish
+===============================================================
 
 This is a docker-compose version of the Lando example tests:
 
@@ -18,7 +18,7 @@ docker-compose down
 docker-compose build && docker-compose up -d
 
 # Ensure mariadb pod is ready to connect
-docker run --rm --net drupal9-base_default amazeeio/dockerize dockerize -wait tcp://mariadb:3306 -timeout 1m
+docker run --rm --net drupal9-varnish_default amazeeio/dockerize dockerize -wait tcp://mariadb:3306 -timeout 1m
 ```
 
 Verification commands
@@ -33,16 +33,17 @@ docker-compose exec -T cli bash -c "drush cr -y"
 docker-compose exec -T cli bash -c "drush status" | grep "Drupal bootstrap" | grep "Successful"
 
 # Should have all the services we expect
-docker ps --filter label=com.docker.compose.project=drupal9-base | grep Up | grep drupal9-base_nginx_1
-docker ps --filter label=com.docker.compose.project=drupal9-base | grep Up | grep drupal9-base_mariadb_1
-docker ps --filter label=com.docker.compose.project=drupal9-base | grep Up | grep drupal9-base_php_1
-docker ps --filter label=com.docker.compose.project=drupal9-base | grep Up | grep drupal9-base_cli_1
+docker ps --filter label=com.docker.compose.project=drupal9-varnish | grep Up | grep drupal9-varnish_nginx_1
+docker ps --filter label=com.docker.compose.project=drupal9-varnish | grep Up | grep drupal9-varnish_mariadb_1
+docker ps --filter label=com.docker.compose.project=drupal9-varnish | grep Up | grep drupal9-varnish_php_1
+docker ps --filter label=com.docker.compose.project=drupal9-varnish | grep Up | grep drupal9-varnish_cli_1
+docker ps --filter label=com.docker.compose.project=drupal9-varnish | grep Up | grep drupal9-varnish_varnish_1
 
 # Should ssh against the cli container by default
 docker-compose exec -T cli bash -c "env | grep LAGOON=" | grep cli-drupal
 
 # Should have the correct environment set
-docker-compose exec -T cli bash -c "env" | grep LAGOON_ROUTE | grep drupal9-base.docker.amazee.io
+docker-compose exec -T cli bash -c "env" | grep LAGOON_ROUTE | grep drupal9-varnish.docker.amazee.io
 docker-compose exec -T cli bash -c "env" | grep LAGOON_ENVIRONMENT_TYPE | grep development
 
 # Should be running PHP 8
@@ -68,6 +69,9 @@ docker-compose exec -T cli bash -c "yarn --version"
 
 # Should have a running Drupal 9 site served by nginx on port 8080
 docker-compose exec -T cli bash -c "curl -kL http://nginx:8080" | grep "Welcome to Drush Site-Install"
+
+# Should be running Varnish 5
+docker-compose exec -T cli bash -c "curl -I http://varnish:8080" | grep "Varnish/5"
 
 # Should be able to db-export and db-import the database
 docker-compose exec -T cli bash -c "drush sql-dump --result-file /app/test.sql"

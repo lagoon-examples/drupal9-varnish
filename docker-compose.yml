@@ -10,7 +10,7 @@ x-volumes:
 x-environment:
   &default-environment
     # Route that should be used locally, if you are using pygmy, this route *must* end with .docker.amazee.io
-    LAGOON_ROUTE: &default-url http://${COMPOSE_PROJECT_NAME:-drupal9-base}.docker.amazee.io
+    LAGOON_ROUTE: &default-url http://${COMPOSE_PROJECT_NAME:-drupal9-varnish}.docker.amazee.io
     # Uncomment if you like to have the system behave like in production
     #LAGOON_ENVIRONMENT_TYPE: production
     # Uncomment to enable xdebug and then restart via `docker-compose up -d`
@@ -33,7 +33,7 @@ services:
     build:
       context: .
       dockerfile: lagoon/cli.dockerfile
-    image: &cli-image ${COMPOSE_PROJECT_NAME:-drupal9-base}-cli # this image will be reused as `CLI_IMAGE` in subsequent Docker builds
+    image: &cli-image ${COMPOSE_PROJECT_NAME:-drupal9-varnish}-cli # this image will be reused as `CLI_IMAGE` in subsequent Docker builds
     labels:
       # Lagoon Labels
       lagoon.type: cli-persistent
@@ -63,7 +63,7 @@ services:
       - cli # basically just tells docker-compose to build the cli first
     environment:
       << : *default-environment # loads the defined environment variables from the top
-      LAGOON_LOCALDEV_URL: *default-url
+      LAGOON_LOCALDEV_URL: nginx-${COMPOSE_PROJECT_NAME:-drupal9-varnish} # generate another route for nginx, by default we go to varnish
     networks:
       - amazeeio-network
       - default
@@ -98,6 +98,21 @@ services:
       << : *default-environment
     volumes:
       - db:/var/lib/mysql
+
+  varnish:
+    image: uselagoon/varnish-5-drupal:latest
+    labels:
+      lagoon.type: varnish
+      lando.type: varnish-drupal
+    links:
+      - nginx # links varnish to the nginx in this docker-compose project, or it would try to connect to any nginx running in docker
+    << : *default-user # uses the defined user from top
+    environment:
+      << : *default-environment
+      VARNISH_BYPASS: "true" # by default we bypass varnish, change to 'false' or remove in order to tell varnish to cache if possible
+    networks:
+      - amazeeio-network
+      - default
 
 networks:
   amazeeio-network:
