@@ -24,7 +24,7 @@
         "drupal/core-project-message": "9.4.1",
         "drupal/core-recommended": "9.4.1",
         "drupal/lagoon_logs": "2.0.1",
-        "drupal/lagoon_varnish": "^1.1",
+        "drupal/lagoon_varnish": "1.1.0",
         "drupal/purge": "3.2.0",
         "drupal/varnish_purge": "2.1.0",
         "drush/drush": "11.0.9",
