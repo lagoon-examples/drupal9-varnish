@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3baffaaf775435193cc83c9a1ff5bb24",
+    "content-hash": "6ba9832ed9d7083ee18345e83f7cd468",
     "packages": [
         {
             "name": "amazeeio/drupal_integrations",
@@ -10769,7 +10769,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "drupal/lagoon_varnish": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
