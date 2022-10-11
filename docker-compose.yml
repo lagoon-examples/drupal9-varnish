@@ -100,7 +100,7 @@ services:
       - db:/var/lib/mysql
 
   varnish:
-    image: uselagoon/varnish-5-drupal:latest
+    image: uselagoon/varnish-6-drupal:latest
     labels:
       lagoon.type: varnish
       lando.type: varnish-drupal
