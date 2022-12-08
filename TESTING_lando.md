@@ -1,5 +1,5 @@
-Lando Drupal 9 varnish - php8, nginx, mariadb, varnish
-======================================================
+Lando Drupal 9 varnish - php8, nginx, mariadb, varnish7
+=======================================================
 
 This example exists primarily to test the following documentation:
 
@@ -71,8 +71,8 @@ lando yarn --version
 # Should have lagoon cli
 lando lagoon --version | grep lagoon
 
-# Should be running Varnish 5
-lando ssh -s cli -c "curl -I http://varnish:8080" | grep "Varnish/5"
+# Should be running Varnish 7
+lando ssh -s cli -c "curl -I http://varnish:8080" | grep "Varnish/7"
 
 # Should have a running Drupal 9 site served by nginx on port 8080
 lando ssh -s cli -c "curl -kL http://nginx:8080" | grep "Welcome to Drush Site-Install"

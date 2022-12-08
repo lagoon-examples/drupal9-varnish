@@ -1,5 +1,5 @@
-Docker Compose Drupal 9 varnish - php8, nginx, mariadb, varnish
-===============================================================
+Docker Compose Drupal 9 varnish - php8, nginx, mariadb, varnish7
+================================================================
 
 This is a docker-compose version of the Lando example tests:
 
@@ -70,8 +70,8 @@ docker-compose exec -T cli bash -c "yarn --version"
 # Should have a running Drupal 9 site served by nginx on port 8080
 docker-compose exec -T cli bash -c "curl -kL http://nginx:8080" | grep "Drush Site-Install"
 
-# Should be running Varnish 5
-docker-compose exec -T cli bash -c "curl -I http://varnish:8080" | grep "Varnish/5"
+# Should be running Varnish 7
+docker-compose exec -T cli bash -c "curl -I http://varnish:8080" | grep "Varnish/7"
 
 # Should be able to db-export and db-import the database
 docker-compose exec -T cli bash -c "drush sql-dump --result-file /app/test.sql"
