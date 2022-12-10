@@ -1,5 +1,5 @@
-Docker Compose Drupal 9 varnish - php8, nginx, mariadb, varnish7
-================================================================
+Docker Compose Drupal 9 Varnish option - php8, nginx, mariadb, varnish7
+=======================================================================
 
 This is a docker-compose version of the Lando example tests:
 
