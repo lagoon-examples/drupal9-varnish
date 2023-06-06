@@ -27,7 +27,7 @@
         "drupal/lagoon_varnish": "1.x-dev",
         "drupal/purge": "3.4.0",
         "drupal/varnish_purge": "2.2.0",
-        "drush/drush": "11.5.1",
+        "drush/drush": "11.6.0",
         "zaporylie/composer-drupal-optimizations": "1.2.0"
     },
     "require-dev": {
