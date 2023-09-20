@@ -23,7 +23,7 @@
         "drupal/core-composer-scaffold": "9.5.11",
         "drupal/core-project-message": "9.5.11",
         "drupal/core-recommended": "9.5.11",
-        "drupal/lagoon_logs": "2.1.1",
+        "drupal/lagoon_logs": "3.0.0",
         "drupal/lagoon_varnish": "1.x-dev",
         "drupal/purge": "3.4.0",
         "drupal/varnish_purge": "2.2.0",
