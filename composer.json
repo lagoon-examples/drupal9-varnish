@@ -25,7 +25,7 @@
         "drupal/core-recommended": "9.5.11",
         "drupal/lagoon_logs": "2.1.1",
         "drupal/lagoon_varnish": "1.x-dev",
-        "drupal/purge": "3.5.0",
+        "drupal/purge": "3.6.0",
         "drupal/varnish_purge": "2.2.0",
         "drush/drush": "11.6.0",
         "zaporylie/composer-drupal-optimizations": "1.2.0"
